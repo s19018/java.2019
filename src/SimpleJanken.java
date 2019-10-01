@@ -8,6 +8,12 @@ public class SimpleJanken {
         // ① プログラムが開始したことを表示する
         System.out.println("【ジャンケン開始】\n");
 
+        // プレイヤー１の勝ち数
+        int player1WinCount = 0;
+
+        // プレイヤー２の勝ち数
+        int player2WinCount = 0;
+
         // 乱数を格納するための変数
         double randomNum = 0;
 
@@ -64,12 +70,6 @@ public class SimpleJanken {
             // プレイヤー２の手を表示する
             System.out.println("パー");
         }
-
-        // プレイヤー１の勝ち数
-        int player1WinCount = 0;
-
-        // プレイヤー２の勝ち数
-        int player2WinCount = 0;
 
         // 4. どちらが勝ちかを判定し、結果を表示する
         // プレイヤー１が勝つ場合
