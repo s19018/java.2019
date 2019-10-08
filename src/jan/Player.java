@@ -16,6 +16,9 @@ public class Player {
     /** プレイヤーの勝った回数 */
     private int winCount_ = 0;
 
+    /** 与えられた戦略 */
+    private Tactics tactics_;
+
     /**
      * プレイヤークラスのコンストラクタ。
      *
@@ -23,6 +26,15 @@ public class Player {
      */
     public Player(String name) {
         name_ = name;
+    }
+
+    /**
+     * プレイヤーに戦略を渡す。
+     *
+     * @param tactics 戦略
+     */
+    void setTactics(Tactics tactics) {
+        tactics_ = tactics;
     }
 
     //----------------------
@@ -34,22 +46,8 @@ public class Player {
      * @return ジャンケンの手
      */
     public int showHand() {
-        // プレイヤーの手
-        int hand = 0;
-
-        // 0以上3未満の少数として乱数を得る
-        double randomNum = Math.random() * 3;
-        // System.out.println("randomNum = " + randomNum);
-        if (randomNum < 1) {
-            // randomNum が 0.0以上1.0未満の場合、グー
-            hand = STONE;
-        } else if (randomNum < 2) {
-            // randomNum が 1.0以上2.0未満の場合、チョキ
-            hand = SCISSORS;
-        } else if (randomNum < 3) {
-            // randomNum が 2.0以上3.0未満の場合、パー
-            hand = PAPER;
-        }
+        // 与えられた戦略を読んでジャンケンの手を決める
+        int hand = tactics_.readTactics();
 
         // 決定した手を戻り値として返す
         return hand;
