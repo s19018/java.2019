@@ -56,4 +56,63 @@ public class Hand {
     public int getNumberofCards() {
         return hand_.size();
     }
+
+    /**
+     * 同じ数のカードを探す。
+     * 同じ数のカードが無い場合は null を返します。
+     *
+     * @return 同じ数のカード
+     */
+    public Card[] findSameNumberCard() {
+        int numberOfCards = hand_.size();
+        Card[] sameCards = null;
+
+        // 手札にカードが1枚もない場合は何もしない
+        if (numberOfCards > 0) {
+            // 最後に追加されたカードを取得する
+            int lastIndex = numberOfCards - 1;
+            Card lastAddedCard = hand_.get(lastIndex);
+
+            // 最後に追加されたカードの数字を取得する
+            int lastAddedCardNum = lastAddedCard.getNumber();
+
+            for (int index = 0; index < lastIndex; index++) {
+                Card card = hand_.get(index);
+                if (card.getNumber() == lastAddedCardNum) {
+                    // 最後に追加されたカードと同じカードが見つかった場合
+                    // 見つかった組み合わせをsameCardsに格納し、ループを抜ける
+                    sameCards = new Card[2];
+                    sameCards[0] = hand_.remove(lastIndex);
+                    sameCards[1] = hand_.remove(index);
+                    break;
+                }
+
+            }
+        }
+
+        return sameCards;
+    }
+
+    /**
+     * 手札にあるカードを文字列で表現する。
+     * ObjectクラスのtoStringメソッドをオーバライドしたメソッド。
+     *
+     * @return 手札にあるカードの文字列表現
+     */
+    @Override
+    public String toString() {
+        StringBuffer string = new StringBuffer();
+
+        int size = hand_.size();
+        if (size > 0) {
+            for (int index = 0; index < size; index++) {
+                Card card = hand_.get(index);
+                string.append(card);
+                string.append(" ");
+            }
+        }
+
+        return string.toString();
+    }
+
 }

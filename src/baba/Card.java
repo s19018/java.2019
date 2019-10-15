@@ -39,7 +39,7 @@ public class Card {
      *
      * @return 数
      */
-    public int geNumber() {
+    public int getNumber() {
         return number_;
     }
 
