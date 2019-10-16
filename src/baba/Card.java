@@ -44,6 +44,15 @@ public class Card {
     }
 
     /**
+     * スートを見る。
+     *
+     * @return スート
+     */
+    public int getSuit() {
+        return suit_;
+    }
+
+    /**
      * カードを文字列で表現する。
      * ObjectクラスのtoStringメソッドをオーバーライド。
      *
