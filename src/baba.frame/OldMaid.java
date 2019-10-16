@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import trump.Card;
+import trump.Joker;
+import trump.Hand; // 動作確認のため
+
 /**
  * ばば抜きプログラム。
  */
@@ -68,30 +71,34 @@ public class OldMaid {
 
 
 
-        // Card [] samecards = null;
-        // Hand hand = new Hand();
-        // samecards = hand.findSameNumberCard();
-        // System.out.println(samecards);
+        Card tmp = null;
+        Hand hand = new Hand();
+        tmp = hand.lookCard(0);
+        System.out.println(tmp);
 
-        // hand.addCard(new Card(Card.SUIT_HEART, 1));
-        // samecards = hand.findSameNumberCard();
-        // System.out.println(samecards);
+        hand.addCard(new Card(Card.SUIT_HEART, 1));
+        hand.addCard(new Card(Card.SUIT_HEART, 2));
+        hand.addCard(new Card(Card.SUIT_HEART, 3));
+        hand.addCard(new Card(Card.SUIT_HEART, 4));
+        System.out.println(hand);
+        tmp = hand.lookCard(0);
+        System.out.println(tmp);
 
-        // hand.addCard(new Card(Card.SUIT_HEART, 2));
-        // samecards = hand.findSameNumberCard();
-        // System.out.println(samecards);
+        hand.addCard(new Card(Card.SUIT_DIAMOND, 2));
+        tmp = hand.pickCard(0);
+        System.out.println(tmp);
+        System.out.println(hand);
 
-        // hand.addCard(new Card(Card.SUIT_HEART, 3));
-        // samecards = hand.findSameNumberCard();
-        // System.out.println(samecards);
+        hand.shuffle();
+        System.out.println(hand);
 
-        // hand.addCard(new Card(Card.SUIT_DIAMOND, 3));
+        int n = hand.getNumberofCards();
+        System.out.println(n);
 
-        // System.out.println(hand);
-        // samecards = hand.findSameNumberCard();
-        // for (int i = 0; i < samecards.length; i++) {
-        //     System.out.println(samecards[i]);
-        // }
+        tmp = hand.pickCard(100);
+        System.out.println(tmp);
+        System.out.println(hand);
+
         // Table table = new Table();
         // table.disposedCard(samecards);
         // System.out.println(hand);
@@ -114,25 +121,25 @@ public class OldMaid {
         // System.out.println(hand);
 
 
-        ArrayList<Card> cards = new ArrayList<Card>();
+        // ArrayList<Card> cards = new ArrayList<Card>();
 
-        for (int number = 1; number <= 13; number++) {
-            cards.add(new Card(Card.SUIT_CLUB, number));
-            cards.add(new Card(Card.SUIT_DIAMOND, number));
-            cards.add(new Card(Card.SUIT_HEART, number));
-            cards.add(new Card(Card.SUIT_SPADE, number));
-        }
+        // for (int number = 1; number <= 13; number++) {
+        //     cards.add(new Card(Card.SUIT_CLUB, number));
+        //     cards.add(new Card(Card.SUIT_DIAMOND, number));
+        //     cards.add(new Card(Card.SUIT_HEART, number));
+        //     cards.add(new Card(Card.SUIT_SPADE, number));
+        // }
 
-        // // ジョーカーの作成
-        // cards.add(new Card(0, Card.JOKER));
+        // // // ジョーカーの作成
+        // cards.add(new Joker());
 
-        for (int i = 0; i < 52; i++) {
-            System.out.print(cards.get(i));
-            System.out.print(" ");
-            System.out.print(cards.get(i).getSuit());
-            System.out.print(" ");
-            System.out.println(cards.get(i).getNumber());
-        }
+        // for (int i = 0; i < 53; i++) {
+        //     System.out.print(cards.get(i));
+        //     System.out.print(" ");
+        //     System.out.print(cards.get(i).getSuit());
+        //     System.out.print(" ");
+        //     System.out.println(cards.get(i).getNumber());
+        // }
         
     }
 

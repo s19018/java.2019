@@ -23,10 +23,10 @@ public class Card {
     public static final int CARD_NUM = 13;
 
     /** カードの示すスート */
-    private int suit_;
+    protected int suit_;
 
     /** カードの示す数 */
-    private int number_;
+    protected int number_;
 
     /**
      * コンストラクタ
