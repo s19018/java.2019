@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import trump.Card;
 import trump.Joker;
 import trump.Hand; // 動作確認のため
+import trump.Table;
 
 /**
  * ばば抜きプログラム。
@@ -99,26 +100,15 @@ public class OldMaid {
         System.out.println(tmp);
         System.out.println(hand);
 
-        // Table table = new Table();
-        // table.disposedCard(samecards);
-        // System.out.println(hand);
-
-        // hand.addCard(new Card(Card.SUIT_DIAMOND, 4));
-        // samecards = hand.findSameNumberCard();
-        // System.out.println(samecards);
-
-        // hand.addCard(new Card(Card.SUIT_DIAMOND, 5));
-
-        // samecards = hand.findSameNumberCard();
-        // System.out.println(samecards);
-
-        // System.out.println(hand);
-        // hand.shuffle();
-        // System.out.println(hand);
-
-        // Card pick = hand.pickCard();
-        // System.out.println(pick);
-        // System.out.println(hand);
+        Table table = new OldMaidTable();
+        System.out.println(table);
+        n = hand.getNumberofCards();
+        Card[] cards = new Card[n];
+        for (int i = 0; i < n; i++) {
+            cards[i] = hand.pickCard(0);
+        }
+        table.putCard(cards);
+        System.out.println(table);
 
 
         // ArrayList<Card> cards = new ArrayList<Card>();
