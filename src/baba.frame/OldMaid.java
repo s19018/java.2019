@@ -3,6 +3,7 @@ import trump.Card;
 import trump.Joker;
 import trump.Hand; // 動作確認のため
 import trump.Table;
+import trump.Rule;
 
 /**
  * ばば抜きプログラム。
@@ -85,7 +86,6 @@ public class OldMaid {
         tmp = hand.lookCard(0);
         System.out.println(tmp);
 
-        hand.addCard(new Card(Card.SUIT_DIAMOND, 2));
         tmp = hand.pickCard(0);
         System.out.println(tmp);
         System.out.println(hand);
@@ -102,12 +102,18 @@ public class OldMaid {
 
         Table table = new OldMaidTable();
         System.out.println(table);
-        n = hand.getNumberofCards();
-        Card[] cards = new Card[n];
-        for (int i = 0; i < n; i++) {
-            cards[i] = hand.pickCard(0);
-        }
+        // n = hand.getNumberofCards();
+        // Card[] cards = new Card[n];
+        // for (int i = 0; i < n; i++) {
+        //     cards[i] = hand.pickCard(0);
+        // }
+        // table.putCard(cards);
+
+        hand.addCard(new Card(Card.SUIT_DIAMOND, 2));
+        Rule rule = new OldMaidRule();
+        Card[] cards = rule.findCandidate(hand, table);
         table.putCard(cards);
+
         System.out.println(table);
 
 
