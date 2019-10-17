@@ -4,6 +4,7 @@ import trump.Joker;
 import trump.Hand; // 動作確認のため
 import trump.Table;
 import trump.Rule;
+import trump.Player;
 
 /**
  * ばば抜きプログラム。
@@ -37,71 +38,67 @@ public class OldMaid {
         // // ゲームを開始する
         // master.startGame();
         
-        // Table table = new Table();
-
-        // Player taro = new Player("太郎", table);
-        // Player hanako = new Player("花子", table);
-        // System.out.println(taro);
-        // System.out.println(hanako);
-
-        // taro.receiveCard(new Card(Card.SUIT_DIAMOND, 1));
-        // taro.receiveCard(new Card(Card.SUIT_DIAMOND, 2));
-        // taro.receiveCard(new Card(Card.SUIT_DIAMOND, 3));
-        // System.out.println(taro.showHand());
-
-        // hanako.receiveCard(new Card(Card.SUIT_HEART, 1));
-        // hanako.receiveCard(new Card(Card.SUIT_HEART, 2));
-        // hanako.receiveCard(new Card(Card.SUIT_HEART, 3));
-        // hanako.receiveCard(new Card(Card.JOKER, 0));
-        // System.out.println(hanako.showHand());
-
-        // taro.play(hanako);
-        // System.out.println(taro.showHand());
-        // System.out.println(hanako.showHand());
-
-        // hanako.play(taro);
-        // System.out.println(taro.showHand());
-        // System.out.println(hanako.showHand());
-
-        // taro.play(hanako);
-        // System.out.println(taro.showHand());
-        // System.out.println(hanako.showHand());
-
-        // hanako.play(taro);
-        // System.out.println(taro.showHand());
-        // System.out.println(hanako.showHand());
-
-
-
-        Card tmp = null;
-        Hand hand = new Hand();
-        tmp = hand.lookCard(0);
-        System.out.println(tmp);
-
-        hand.addCard(new Card(Card.SUIT_HEART, 1));
-        hand.addCard(new Card(Card.SUIT_HEART, 2));
-        hand.addCard(new Card(Card.SUIT_HEART, 3));
-        hand.addCard(new Card(Card.SUIT_HEART, 4));
-        System.out.println(hand);
-        tmp = hand.lookCard(0);
-        System.out.println(tmp);
-
-        tmp = hand.pickCard(0);
-        System.out.println(tmp);
-        System.out.println(hand);
-
-        hand.shuffle();
-        System.out.println(hand);
-
-        int n = hand.getNumberofCards();
-        System.out.println(n);
-
-        tmp = hand.pickCard(100);
-        System.out.println(tmp);
-        System.out.println(hand);
-
         Table table = new OldMaidTable();
-        System.out.println(table);
+        Rule rule = new OldMaidRule();
+
+        OldMaidPlayer taro = new OldMaidPlayer("太郎", table, rule);
+        OldMaidPlayer hanako = new OldMaidPlayer("花子", table, rule);
+        System.out.println(taro);
+        System.out.println(hanako);
+
+        taro.receiveCard(new Card(Card.SUIT_DIAMOND, 1));
+        taro.receiveCard(new Card(Card.SUIT_DIAMOND, 2));
+        taro.receiveCard(new Card(Card.SUIT_DIAMOND, 3));
+        System.out.println(taro.showHand());
+
+        hanako.receiveCard(new Card(Card.SUIT_HEART, 1));
+        hanako.receiveCard(new Card(Card.SUIT_HEART, 2));
+        hanako.receiveCard(new Card(Card.SUIT_HEART, 3));
+        hanako.receiveCard(new Joker());
+        System.out.println(hanako.showHand());
+
+        taro.play(hanako);
+        System.out.println(taro.showHand());
+        System.out.println(hanako.showHand());
+
+        hanako.play(taro);
+        System.out.println(taro.showHand());
+        System.out.println(hanako.showHand());
+
+        taro.play(hanako);
+        System.out.println(taro.showHand());
+        System.out.println(hanako.showHand());
+
+
+        // Card tmp = null;
+        // Hand hand = new Hand();
+        // tmp = hand.lookCard(0);
+        // System.out.println(tmp);
+
+        // hand.addCard(new Card(Card.SUIT_HEART, 1));
+        // hand.addCard(new Card(Card.SUIT_HEART, 2));
+        // hand.addCard(new Card(Card.SUIT_HEART, 3));
+        // hand.addCard(new Card(Card.SUIT_HEART, 4));
+        // System.out.println(hand);
+        // tmp = hand.lookCard(0);
+        // System.out.println(tmp);
+
+        // tmp = hand.pickCard(0);
+        // System.out.println(tmp);
+        // System.out.println(hand);
+
+        // hand.shuffle();
+        // System.out.println(hand);
+
+        // int n = hand.getNumberofCards();
+        // System.out.println(n);
+
+        // tmp = hand.pickCard(100);
+        // System.out.println(tmp);
+        // System.out.println(hand);
+
+        // Table table = new OldMaidTable();
+        // System.out.println(table);
         // n = hand.getNumberofCards();
         // Card[] cards = new Card[n];
         // for (int i = 0; i < n; i++) {
@@ -109,12 +106,12 @@ public class OldMaid {
         // }
         // table.putCard(cards);
 
-        hand.addCard(new Card(Card.SUIT_DIAMOND, 2));
-        Rule rule = new OldMaidRule();
-        Card[] cards = rule.findCandidate(hand, table);
-        table.putCard(cards);
+        // hand.addCard(new Card(Card.SUIT_DIAMOND, 2));
+        // Rule rule = new OldMaidRule();
+        // Card[] cards = rule.findCandidate(hand, table);
+        // table.putCard(cards);
 
-        System.out.println(table);
+        // System.out.println(table);
 
 
         // ArrayList<Card> cards = new ArrayList<Card>();
