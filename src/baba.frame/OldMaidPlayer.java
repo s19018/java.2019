@@ -1,5 +1,5 @@
 import trump.Card;
-// import trump.Master;
+import trump.Master;
 import trump.Table;
 import trump.Player;
 import trump.Rule;
@@ -18,10 +18,8 @@ public class OldMaidPlayer extends Player {
      * @param table テーブル
      * @param rule ルール
      */
-    // public OldMaidPlayer(String name, Master master, Table table, Rule rule) {
-    public OldMaidPlayer(String name, Table table, Rule rule) {
-        // super(name, master, table, rule);
-        super(name, table, rule);
+    public OldMaidPlayer(String name, Master master, Table table, Rule rule) {
+        super(name, master, table, rule);
     }
 
     /** カードを配る。
@@ -57,7 +55,7 @@ public class OldMaidPlayer extends Player {
         // 手札がゼロになったかどうか調べる
         if (myHand_.getNumberofCards() == 0) {
             // 進行役に上がりを宣言する
-            // master_.declareWin(this);
+            master_.declareWin(this);
         } else {
             // 現在の手札を表示する
             System.out.println(this + ":残りの手札は " + myHand_ + "です");
@@ -73,7 +71,7 @@ public class OldMaidPlayer extends Player {
         // もしこの時点で手札が残り1枚ならば上がりとなるので宣言する
         if  (myHand_.getNumberofCards() == 1) {
             // 進行役に上がりを宣言する
-            // master_.declareWin(this);
+            master_.declareWin(this);
         }
 
         // 見せる前にシャッフルする

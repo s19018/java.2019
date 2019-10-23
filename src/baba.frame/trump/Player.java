@@ -14,7 +14,7 @@ public abstract class Player {
     protected Hand myHand_ = new Hand();
 
     /** 進行役 */
-    // protected Master master_;
+    protected Master master_;
 
     /** ルール */
     protected Rule rule_;
@@ -27,10 +27,9 @@ public abstract class Player {
      * @param table テーブル
      * @param rule ルール
      */
-    // public Player(String name, Master master, Table table, Rule rule) {
-    public Player(String name, Table table, Rule rule) {
+    public Player(String name, Master master, Table table, Rule rule) {
         this.name_ = name;
-        // this.master_ = master;
+        this.master_ = master;
         this.table_ = table;
         this.rule_ = rule;
     }
