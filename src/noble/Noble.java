@@ -4,6 +4,7 @@ import trump.Table;
 import trump.Hand;
 import trump.Player;
 import trump.Rule;
+import trump.Joker;
 
 /**
  * 大貴族のプログラム。
@@ -31,14 +32,14 @@ public class Noble {
 
     table.putCard(cards);
 
-    // cards = new Card[] {
-    //   new Card(Card.SUIT_SPADE, 2),
-    //   new Card(Card.SUIT_DIAMOND, 2),
-    //   new Card(Card.SUIT_CLUB, 2),
-    //   new Card(Card.SUIT_HEART, 2)
-    // };
+    cards = new Card[] {
+      new Card(Card.SUIT_SPADE, 13),
+      new Card(Card.SUIT_DIAMOND, 13),
+      new Card(Card.SUIT_CLUB, 13),
+      new Card(Card.SUIT_HEART, 13)
+    };
 
-    // table.putCard(cards);
+    table.putCard(cards);
 
     System.out.println(table);
 
@@ -51,10 +52,15 @@ public class Noble {
     System.out.println();
 
     Hand hand = new Hand();
-    hand.addCard(new Card(Card.SUIT_CLUB, 8));
-    hand.addCard(new Card(Card.SUIT_SPADE, 8));
-    hand.addCard(new Card(Card.SUIT_DIAMOND, 8));
-    hand.addCard(new Card(Card.SUIT_HEART, 8));
+    hand.addCard(new Card(Card.SUIT_CLUB, 10));
+    hand.addCard(new Card(Card.SUIT_SPADE, 10));
+    hand.addCard(new Card(Card.SUIT_DIAMOND, 10));
+    hand.addCard(new Card(Card.SUIT_CLUB, 1));
+    hand.addCard(new Card(Card.SUIT_SPADE, 1));
+    hand.addCard(new Card(Card.SUIT_DIAMOND, 1));
+    hand.addCard(new Joker());
+
+    System.out.println("手札: " + hand);
 
     Rule rule = new NobleRule();
     Card [] ret2 = rule.findCandidate(hand, table);
@@ -65,10 +71,21 @@ public class Noble {
         System.out.print(ret2[i] + " ");
       }
       System.out.println();
+
+      table.putCard(ret2);
+
+      ret = table.getCards();
+      System.out.print("テーブル: ");
+      for (int i = 0; i < ret[0].length; i++) {
+        System.out.print(ret[0][i] + " ");
+      }
+      System.out.println();
+
+      System.out.println("手札: " + hand);
+
+
     } else {
       System.out.println("テーブルに置けるカードはありません。");
     }
-
-
   }
 }
