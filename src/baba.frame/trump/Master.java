@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Master {
     /** プレイヤーのリスト */
-    private ArrayList<Player> players_ = new ArrayList<>();
+    protected ArrayList<Player> players_ = new ArrayList<>();
 
     /**
      * ゲームの準備をする。
