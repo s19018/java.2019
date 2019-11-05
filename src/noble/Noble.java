@@ -63,7 +63,8 @@ public class Noble {
     System.out.println("手札: " + hand);
 
     Rule rule = new NobleRule();
-    Card [] ret2 = rule.findCandidate(hand, table);
+    // Card [] ret2 = rule.findCandidate(hand, table);
+    Card [] ret2 = ((NobleRule)rule).findCandidate(hand, table, true);
 
     if ( ret2 != null) {
       System.out.print("テーブルに置けるカード: ");
