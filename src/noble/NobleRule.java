@@ -56,6 +56,63 @@ public class NobleRule implements Rule {
   }
 
   /**
+   * テーブルに置けるカードを探す。
+   * 新規なので手札の一番弱いカード
+   *
+   * @param hand 手札
+   * @param table テーブル
+   * @return 見つかったカードの組み合わせ。見つからなかった場合はnullを返す
+   */
+  public Card[]  findCandidate(Hand hand, Table table, boolean reset) {
+    // テーブルに置けるカードの候補
+    Card [] candidate = null;
+    int cardNum = 0;
+
+    int [] cardCount = checkHand(hand);
+    int candidateNo = -1;
+
+    for (int i = 0; i < cardCount.length; i++) {
+   // 0  1  2  3  4  5  6  7  8  9 10 11 12 13
+   // 3  4  5  6  7  8  9  T  J  Q  K  A  2 JK
+      if (cardCount[i] > 0) {
+        if (i <= 10) {
+          candidateNo = i + 3;
+        } else if( i <= 12) {
+          candidateNo = i - 10;
+        } else {
+          candidateNo = 1;
+        }
+        cardNum = cardCount[i];
+        break;
+      }
+    }
+
+
+    // debug
+    System.out.println("candidateNo = " + candidateNo);
+    System.out.println("cardNum = " + cardNum);
+
+    // カードの組数分のエリアを確保
+    candidate = new Card[cardNum];
+    int index = 0;
+    // 手札にあるカードを1枚ずつチェックして、テーブルに置けるか調べる
+    for ( int position = 0; position < hand.getNumberofCards(); position++) {
+      // 手札にあるカードを見る
+      Card lookingCard = hand.lookCard(position);
+      int number = lookingCard.getNumber();
+
+      // 候補の番号か
+      if (number == candidateNo) {
+        // 手札からカードを引いて候補とする
+        candidate[index] = hand.pickCard(position);
+        index += 1; // candidateに格納する位置を１つずらす
+        position -= 1; // 手札から1枚引いたので、引いたカードの次がとばされないように
+      }
+    }
+    return candidate;
+  }
+
+  /**
    * 手札の数字ごとの枚数を調べる。
    *
    * @param hand 手札
