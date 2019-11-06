@@ -31,8 +31,8 @@ public class NobleRule implements Rule {
     int candidateNo = contGetNo(table, hand, cardNo, cardNum, cardCount);
 
     // debug
-    System.out.println("cardNo =" + cardNo + " ,cardNum = " + cardNum);
-    System.out.println("candidateNo = " + candidateNo);
+    // System.out.println("cardNo =" + cardNo + " ,cardNum = " + cardNum);
+    // System.out.println("candidateNo = " + candidateNo);
 
     if (candidateNo >= 0) {
       // カードの組数分のエリアを確保
@@ -89,8 +89,8 @@ public class NobleRule implements Rule {
 
 
     // debug
-    System.out.println("candidateNo = " + candidateNo);
-    System.out.println("cardNum = " + cardNum);
+    // System.out.println("candidateNo = " + candidateNo);
+    // System.out.println("cardNum = " + cardNum);
 
     // カードの組数分のエリアを確保
     candidate = new Card[cardNum];
@@ -165,11 +165,11 @@ public class NobleRule implements Rule {
     int ret = -1;
 
     // debug
-    System.out.print("cardCount:");
-    for (int i = 0; i < cardCount.length; i++) {
-      System.out.print(cardCount[i] + " ");
-    }
-    System.out.println();
+    // System.out.print("cardCount:");
+    // for (int i = 0; i < cardCount.length; i++) {
+    //   System.out.print(cardCount[i] + " ");
+    // }
+    // System.out.println();
 
     if (cardNo <= 2) {
       cardNo += 10;
@@ -178,7 +178,8 @@ public class NobleRule implements Rule {
     }
 
     for (int i = cardNo + 1; i < cardCount.length - 1; i++) {
-      System.out.println("cardCount[" + i + "] = " + cardCount[i] + " cardNum = " + cardNum);
+      // debug
+      // System.out.println("cardCount[" + i + "] = " + cardCount[i] + " cardNum = " + cardNum);
       // 3 4 5 6 7 8 9 10 J(11) Q(12) K(13)  1  2
       // 0 1 2 3 4 5 6  7     8     9    10 11 12
       if (cardCount[i] + cardCount[cardCount.length - 1] >= cardNum) {
