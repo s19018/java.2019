@@ -29,7 +29,9 @@ public class NoblePlayer extends Player {
   @Override
   public void play(Player nextPlayer) {
     // 現在の手札を表示する
-    System.out.println(" " + myHand_);
+    System.out.println("手札: " + myHand_);
+    // テーブルのカードを表示する
+    System.out.println("テーブル: " + table_);
 
     // 現在の手札からテーブルに出せるものを探す
     Card [] candidate = null;
