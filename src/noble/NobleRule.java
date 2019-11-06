@@ -15,7 +15,7 @@ public class NobleRule implements Rule {
    * @return 見つかったカードの組み合わせ。見つからなかった場合はnullを返す
    */
   @Override
-  public Card[]  findCandidate(Hand hand, Table table ) {
+  public Card[]  findCandidate(Hand hand, Table table) {
     // テーブルに置けるカードの候補
     Card [] candidate = null;
 
@@ -31,14 +31,14 @@ public class NobleRule implements Rule {
     int candidateNo = contGetNo(table, hand, cardNo, cardNum, cardCount);
 
     // debug
+    System.out.println("cardNo =" + cardNo + " ,cardNum = " + cardNum);
     System.out.println("candidateNo = " + candidateNo);
 
     if (candidateNo >= 0) {
       // カードの組数分のエリアを確保
       candidate = new Card[cardNum];
-      int index = 0;
       // 手札にあるカードを1枚ずつチェックして、テーブルに置けるか調べる
-      for ( int position = 0; position < hand.getNumberofCards(); position++) {
+      for ( int position = 0, index = 0; position < hand.getNumberofCards() && index < cardNum; position++) {
         // 手札にあるカードを見る
         Card lookingCard = hand.lookCard(position);
         int number = lookingCard.getNumber();
@@ -173,8 +173,9 @@ public class NobleRule implements Rule {
 
     if (cardNo <= 2) {
       cardNo += 10;
+    } else {
+      cardNo -= 3;
     }
-    cardNo -= 3;
 
     for (int i = cardNo + 1; i < cardCount.length - 1; i++) {
       System.out.println("cardCount[" + i + "] = " + cardCount[i] + " cardNum = " + cardNum);

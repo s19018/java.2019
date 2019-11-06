@@ -9,9 +9,6 @@ import trump.Rule;
  */
 public class NoblePlayer extends Player {
 
-  /** パスした回数 */
-  private int pass_;
-
   /**
    * コンストラクタ。
    *
@@ -25,23 +22,6 @@ public class NoblePlayer extends Player {
   }
 
   /**
-   * カードを配る。
-   *
-   * @param card 受け取ったカード 
-   */
-  @Override
-  public void receiveCard(Card card) {
-    if (card.getNumber() == 7) {
-      // カードが7の場合は、テーブルにカードを置く
-      System.out.println(name_ + ":" + card + "を置きました。");
-      table_.putCard(new Card[] { card });
-    } else {
-      // カードが7でない場合は、受け取ったカードを手札に加える
-      super.receiveCard(card);
-    }
-  }
-
-  /**
    * 順番を指名する。
    *
    * @param nextPlayer 次のプレイヤー
@@ -52,15 +32,22 @@ public class NoblePlayer extends Player {
     System.out.println(" " + myHand_);
 
     // 現在の手札からテーブルに出せるものを探す
-    Card [] candidate = rule_.findCandidate(myHand_, table_);
+    Card [] candidate = null;
+    if (((NobleMaster)master_).isContinueGame()) {
+
+      candidate = rule_.findCandidate(myHand_, table_);
+    } else {
+      candidate = ((NobleRule)rule_).findCandidate(myHand_, table_, true);
+    }
 
     // 候補がある場合はテーブルに出す
     if (candidate != null) {
-      System.out.println(" " + candidate[0] + "を置きました。\n");
+      ((NobleMaster)master_).setisContinueGame(); // 継続フラグのセット、パスしたプレイヤーのバッファのリセット
+      for (int i = 0; i < candidate.length; i++) {
+        System.out.print(" " + candidate[i]);
+      }
+      System.out.println("を置きました。\n");
       table_.putCard(candidate);
-
-      // テーブルの状態を表示する
-      System.out.println(table_);
 
       // 手札がなくなったら、上がりを宣言する
       if (myHand_.getNumberofCards() == 0) {
@@ -68,26 +55,7 @@ public class NoblePlayer extends Player {
       } 
     } else {
       // テーブルに出せるカードがなかった場合、パスする
-      pass_++;
       ((NobleMaster)master_).pass(this);
-
-      // パス回数が制限回数以上ならばカードを全てテーブルに置く
-      if (pass_ > NobleMaster.PASS_LIMIT) {
-        int numberOfHand = myHand_.getNumberofCards();
-        // 手札を全てテーブルに置く
-        for (int count = 0; count < numberOfHand; count++) {
-          table_.putCard(new Card[] {myHand_.pickCard(0)});
-        }
-      }
     }
-  }
-
-  /**
-   * パス回数を教える。
-   *
-   * @return パスした回数
-   */
-  public int getPass() {
-    return pass_;
   }
 }

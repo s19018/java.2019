@@ -7,7 +7,12 @@ import trump.Table;
 public class NobleTable implements Table {
 
   /** 最新の置かれたカード */
-  private Card[] putTopCards;
+  private Card[] putTopCards =  {
+    new Card(Card.SUIT_CLUB, 2),
+    new Card(Card.SUIT_DIAMOND, 2),
+    new Card(Card.SUIT_HEART, 2),
+    new Card(Card.SUIT_SPADE, 2),
+  };
 
     /**
      * カードを置く
