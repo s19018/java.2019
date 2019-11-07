@@ -1,9 +1,13 @@
 class Ex3{
 
 	public String ex3_0(int n){
-
-		return "dummy";
-
+    String ret = "";
+    if (n > 0) {
+      ret = "その値は正です";
+    } else {
+      ret = "その値は０か負です";
+    }
+		return ret;
 	}
 
 	public int ex3_1(int n){
