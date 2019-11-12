@@ -122,4 +122,33 @@ public class Card {
         return string.toString();
     }
 
+    /**
+     * カードが等しいかどうかを調べる
+     *
+     * @return カードが等しいかどうか
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+      if (this == obj)
+        return true;
+      if (!(obj instanceof Card))
+        return false;
+      Card otherCard = (Card) obj;
+      return this.getNumber() == otherCard.getNumber() 
+        && this.getSuit() == otherCard.getSuit();
+
+    }
+
+    /**
+     * カードインスタンスのバッシュ値を返す
+     *
+     * @return カードインスタンスのハッシュ値
+     */
+    @Override
+    public int hashCode() {
+      return this.getSuit() * 100 + this.getNumber();
+    }
+
+
 }
