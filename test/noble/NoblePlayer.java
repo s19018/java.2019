@@ -3,6 +3,7 @@ import trump.Master;
 import trump.Table;
 import trump.Player;
 import trump.Rule;
+import trump.Hand;
 
 /**
  * 大貴族のプレイヤークラス。
@@ -60,4 +61,21 @@ public class NoblePlayer extends Player {
       ((NobleMaster)master_).pass(this);
     }
   }
+    /**
+     * 手札を見せる。
+     *
+     * @return 自分の手札
+     */
+    public Hand showHand() {
+        // もしこの時点で手札が残り1枚ならば上がりとなるので宣言する
+        if  (myHand_.getNumberofCards() == 1) {
+            // 進行役に上がりを宣言する
+            master_.declareWin(this);
+        }
+
+        // 見せる前にシャッフルする
+        myHand_.shuffle();
+
+        return myHand_;
+    }
 }
