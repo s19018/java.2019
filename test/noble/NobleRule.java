@@ -194,3 +194,4 @@ public class NobleRule implements Rule {
     return ret;
   }
 }
+
